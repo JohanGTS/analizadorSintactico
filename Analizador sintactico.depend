@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1739504615 source:c:\users\johantavera\desktop\icpc\test\analizador sintactico\main.cpp
+	<iostream>
+	<string>
+	<cctype>
+	<cmath>
+
