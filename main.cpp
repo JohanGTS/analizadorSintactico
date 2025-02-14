@@ -46,9 +46,9 @@ double factor() {
         return encuentraNumero();
     } else if (siguienteCaracter() == '(') {
         esperaCaracter('(');
-        double result = expresion();
+        double resultado = expresion();
         esperaCaracter(')');
-        return result;
+        return resultado;
     }  else {
         throw runtime_error("Error se esperaba un numero o '(' en la posicion " + to_string(pos));
     }
@@ -56,33 +56,33 @@ double factor() {
 
 // Multiplicacion y division
 double terminal() {
-    double result = factor();
+    double resultado = factor();
     while (siguienteCaracter() == '*' || siguienteCaracter() == '/') {
         char op = siguienteCaracter();
         esperaCaracter(op);
         if (op == '*') {
-            result *= factor();
+            resultado *= factor();
         } else {
-            result /= factor();
+            resultado /= factor();
         }
     }
-    return result;
+    return resultado;
 }
 
 // Regla para la expresión
 double expresion() {
-    double result = terminal();
+    double resultado = terminal();
     while (siguienteCaracter() == '+' || siguienteCaracter() == '-') {
         char op = siguienteCaracter();
         esperaCaracter(op);
         if (op == '+') {
-            result += terminal();
+            resultado += terminal();
         } else {
-            result -= terminal();
+            resultado -= terminal();
         }
     }
     //esperaCaracter(';');
-    return result;
+    return resultado;
 }
 
 int main() {
@@ -90,11 +90,11 @@ int main() {
     getline(cin, input);
 
     try {
-        double result = expresion();
+        double resultado = expresion();
         if (pos != input.size()) {
             throw runtime_error("Error inesperado, no se pudo completar el analisis");
         }
-        cout << "" << result << endl;
+        cout << "" << resultado << endl;
     } catch (const exception& e) {
         cerr << e.what() << endl;
     }
