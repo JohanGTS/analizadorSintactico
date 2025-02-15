@@ -42,7 +42,12 @@ double encuentraNumero() {
 }
 
 double factor() {
-    if (isdigit(siguienteCaracter())) {
+
+    if (siguienteCaracter()=='-')
+    {
+        esperaCaracter('-');
+        return -factor();
+    }else if (isdigit(siguienteCaracter())) {
         return encuentraNumero();
     } else if (siguienteCaracter() == '(') {
         esperaCaracter('(');
@@ -81,12 +86,11 @@ double expresion() {
             resultado -= terminal();
         }
     }
-    //esperaCaracter(';');
+    esperaCaracter(';');
     return resultado;
 }
 
 int main() {
-    //cout << "Digite una operacion: ";
     getline(cin, input);
 
     try {
@@ -94,7 +98,7 @@ int main() {
         if (pos != input.size()) {
             throw runtime_error("Error inesperado, no se pudo completar el analisis");
         }
-        cout << "" << resultado << endl;
+        cout << resultado << endl;
     } catch (const exception& e) {
         cerr << e.what() << endl;
     }
