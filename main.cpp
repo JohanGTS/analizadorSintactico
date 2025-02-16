@@ -86,7 +86,6 @@ double expresion() {
             resultado -= terminal();
         }
     }
-    esperaCaracter(';');
     return resultado;
 }
 
@@ -95,6 +94,8 @@ int main() {
 
     try {
         double resultado = expresion();
+        esperaCaracter(';');
+
         if (pos != input.size()) {
             throw runtime_error("Error inesperado, no se pudo completar el analisis");
         }
